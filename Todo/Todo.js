@@ -4,10 +4,11 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import AddTask from './AddTask'
 import ViewTasks from './ViewTasks'
 
-export default class App extends React.Component {
+export default class Todo extends React.Component {
 
   constructor(){
     super()
+
     this.state={
       tasks: []
     }
