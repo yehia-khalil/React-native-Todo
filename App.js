@@ -1,22 +1,42 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import AddTask from './AddTask'
+import ViewTasks from './ViewTasks'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>To share a photo from your phone with a friend, just press the button below!</Text>
-          <StatusBar style="auto" />  
-    </View>
-  );
+export default class App extends React.Component {
+
+  constructor(){
+    super()
+    this.state={
+      tasks: []
+    }
+  }
+
+  addTask=(task)=>{
+    this.state.tasks.push(task)
+    console.log(this.state.tasks);
+    this.forceUpdate()
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <ViewTasks tasks={this.state.tasks}/>
+        <AddTask func={this.addTask}/>
+        <StatusBar hidden />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 10,
     backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
     color: 'white',
+    justifyContent:"center",
+    alignItems:'center'
   },
 });
